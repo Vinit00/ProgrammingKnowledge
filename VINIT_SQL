@@ -1,0 +1,104 @@
+CREATE DATABASE ORG;
+SHOW DATABASES
+
+USE ORG;
+
+
+CREATE TABLE Workers (
+	WORKER_ID INT NOT NULL identity(1,1) PRIMARY KEY,
+	FIRST_NAME CHAR(25),
+	LAST_NAME CHAR(25),
+	SALARY varchar(15),
+	JOINING_DATE DATE,
+	DEPARTMENT CHAR(25)
+);
+select * from Workers
+
+INSERT INTO Workers 
+	(FIRST_NAME, LAST_NAME, SALARY, JOINING_DATE, DEPARTMENT) VALUES
+		('Niharika', 'Verma', 80000, '2020-06-11', 'Admin'),
+		('Vishal', 'Singhal', 300000, '2020-02-21', 'HR'),
+		('Amitabh', 'Singh', 500000, '2020-02-20', 'Admin'),
+		('Vivek', 'Bhati', 500000, '2019-06-11', 'Admin'),
+		('Vipul', 'Diwan', 200000, '2016-06-11', 'Account'),
+		('Satish', 'Kumar', 75000, '2016-01-20', 'Account'),
+		('Geetika', 'Chauhan', 90000, '2019-04-11', 'Admin');
+		('Monika', 'Arora', 100000, '2020-02-23','HR')
+CREATE TABLE Bonus (
+	WORKER_REF_ID INT,
+	BONUS_AMOUNT varchar(10),
+	BONUS_DATE DATE,FOREIGN KEY (WORKER_REF_ID)
+		REFERENCES Workers(WORKER_ID)
+        ON DELETE CASCADE
+);
+select * from Bonus
+INSERT INTO Bonus 
+	(WORKER_REF_ID, BONUS_AMOUNT, BONUS_DATE) VALUES
+		(3, 4000, '2016-02-20'),
+		(1, 4500, '2016-02-20'),
+		(2, 3500, '2020-06-11');
+		(1, 5000, '2020-02-20'),
+		(2, 3000, '2019-06-11');
+
+
+	CREATE TABLE Title (
+	WORKER_REF_ID INT,
+	WORKER_TITLE CHAR(25),
+	AFFECTED_FROM DATE,
+	FOREIGN KEY (WORKER_REF_ID) REFERENCES Workers(WORKER_ID) ON DELETE CASCADE
+);
+select * from Title
+INSERT INTO Title 
+	(WORKER_REF_ID, WORKER_TITLE, AFFECTED_FROM) VALUES
+ (001, 'Manager', '2016-02-20 00:00:00'),
+ (002, 'Executive', '2016-06-11 00:00:00'),
+ (008, 'Executive', '2016-06-11 00:00:00'),
+ (005, 'Manager', '2016-06-11 00:00:00'),
+ (004, 'Asst. Manager', '2016-06-11 00:00:00'),
+ (007, 'Executive', '2016-06-11 00:00:00'),
+ (006, 'Lead', '2016-06-11 00:00:00'),
+ (003, 'Lead', '2016-06-11 00:00:00');
+ 
+
+
+ select First_Name as Worker_name from Workers
+
+ select upper(First_Name) from Workers
+
+ select distinct department from Workers 
+
+ select substring (First_NAME,1,3) from  Workers  
+
+ select INSTR(FIRST_NAME,BINARY 'a') from Worker where FIRST_NAME='Amitabh'
+select ltrim(Department) from Workers
+
+select distinct DEPARTMENT from Workers
+
+select REPLACE(FIRST_NAME,'a','A') from Workers
+
+select CONCAT(FIRST_NAME,' ',LAST_NAME) As 'Complete name' from Workers
+
+select * from Workers 
+order by FIRST_NAME asc
+
+select * from Workers order by FIRST_NAME asc,DEPARTMENT desc
+
+select * from 
+
+
+
+		/*===============================================================================================================
+		SQL > Advanced SQL > Union
+		The purpose of the SQL UNION query is to combine the results of two queries together while removing duplicates. In other words, when using UNION, 
+		only unique values are returned (similar to SELECT DISTINCT).
+
+SELECT Txn_Date FROM Store_Information
+UNION
+SELECT Txn_Date FROM Internet_Sales;    (Return all txn date
+
+Union All
+
+The purpose of the SQL UNION ALL command is to combine the results of two queries together without removing any duplicates.
+
+=>SELECT SUBSTRING('SQL Tutorial', 1, 3) AS ExtractString;
+Extract 3 characters from a string, starting in position 1:
